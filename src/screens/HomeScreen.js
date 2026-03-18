@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet } from "react-native";
-//import CustomButton from "/components/CustomButton";
+import CustomButton from "../components/CustomButton";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeScreen() {
@@ -18,21 +18,13 @@ export default function HomeScreen() {
 
       <View style={styles.footer}>
         <View style={styles.footerUnderline} />
-        <Text style={styles.button}>Add New ToDo</Text>
+        <CustomButton label="Add New ToDo" onPress={() => alert("Added new ToDo")} />
       </View>
     </SafeAreaView>
   );
 }
 
-// const CustomButton = ({ label, onPress }) => {
-//   return (
-//     <View style={styles.button}>
-//       <Text style={styles.buttonText} onPress={onPress}>
-//         {label}
-//       </Text>
-//     </View>
-//   );
-// };
+
 
 
 const styles = StyleSheet.create({
@@ -42,7 +34,6 @@ const styles = StyleSheet.create({
   },
   header: {
     alignItems: "center",
-    //padding: 20,
   },
   title: {
     fontSize: 30,
@@ -75,6 +66,6 @@ const styles = StyleSheet.create({
   },
   footer: {
     alignItems: "center",
-    padding: 40,
+    marginBottom: 10,
   }
 });
