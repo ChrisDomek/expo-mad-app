@@ -19,7 +19,7 @@ export default function HomeScreen({ navigation }) {
 
       <View style={styles.footer}>
         <View style={styles.footerUnderline} />
-        <CustomButton label="Add New ToDo" onPress={() => navigation.navigate("NewToDo")} />
+        <CustomButton label="Add New ToDo" onPress={() => navigation.navigate("NewToDo")}/>
       </View>
     </SafeAreaView>
   );
@@ -28,7 +28,7 @@ export default function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#e7e7e7",
+    backgroundColor: "#c6c5d1",
   },
   header: {
     alignItems: "center",

@@ -11,11 +11,11 @@ export default function Title({title}){
 
 const styles = StyleSheet.create({
     container: {
-        width: "90%",
+        width: "100%",
         height: 60,
-        backgroundColor: "red",
-        borderWidth: 1,
-        borderColor: "black",
+        backgroundColor: "#c6c5d1",
+        // borderWidth: 1,
+        // borderColor: "black",
         justifyContent: "center",
         alignItems: "center",
         margin: 5,
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 30,
         fontWeight: "bold",
-        color: "#fff",
+        color: "#000000",
     },
 
 });
