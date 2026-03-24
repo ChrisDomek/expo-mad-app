@@ -6,7 +6,12 @@ const CustomButton = ({ label, onPress }) => {
   return (
     <TouchableOpacity style={styles.button} onPress={onPress}>
       <View style={styles.content}>
-        <Ionicons name="add-circle" size={20} color="white" style={styles.icon} />
+        <Ionicons
+          name="add-circle"
+          size={20}
+          color="white"
+          style={styles.icon}
+        />
         <Text style={styles.buttonText}>{label}</Text>
       </View>
     </TouchableOpacity>

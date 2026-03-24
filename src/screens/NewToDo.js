@@ -18,8 +18,8 @@ export default function NewToDo({ navigation }) {
         numberOfLines={4}
       />
       <View style={styles.buttonContainer}>
-        <CustomButton label="Cancel" onPress={() => navigation.goBack()}/>
-        <CustomButton label="Save" onPress={() => {}}/>
+        <CustomButton label="Cancel" onPress={() => navigation.goBack()} />
+        <CustomButton label="Save" onPress={() => {}} />
       </View>
     </SafeAreaView>
   );
