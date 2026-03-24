@@ -1,12 +1,13 @@
 import { View, Text, StyleSheet } from "react-native";
 import CustomButton from "../components/CustomButton";
 import { SafeAreaView } from "react-native-safe-area-context";
+import Title from "../components/Title";
 
-export default function HomeScreen() {
+export default function HomeScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.title}>My ToDo List</Text>
+        <Title title="My ToDo List" />
         <View style={styles.underline} />
       </View>
 
@@ -18,14 +19,11 @@ export default function HomeScreen() {
 
       <View style={styles.footer}>
         <View style={styles.footerUnderline} />
-        <CustomButton label="Add New ToDo" onPress={() => alert("Added new ToDo")} />
+        <CustomButton label="Add New ToDo" onPress={() => navigation.navigate("NewToDo")} />
       </View>
     </SafeAreaView>
   );
 }
-
-
-
 
 const styles = StyleSheet.create({
   container: {
