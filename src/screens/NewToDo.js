@@ -4,11 +4,11 @@ import CustomButton from "../components/CustomButton";
 import Title from "../components/Title";
 import { useState } from "react";
 
-export default function NewToDo({ navigation }) {
+export default function NewToDo({ navigation, route }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
-  const handlSave = () => {
+  const handleSave = () => {
     if (!title.trim() || !description.trim()) {
       Alert.alert("Invalid Input", "Both Title and Description are required.");
       return;
@@ -22,7 +22,7 @@ export default function NewToDo({ navigation }) {
       expanded: false,
     };
 
-    navigation.navigate("Home", { newTodo: newToDo });
+    route.params.addTodo(newToDo);
 
     Alert.alert("Success", "ToDo Added Successfully!");
     setTitle("");
@@ -51,7 +51,7 @@ export default function NewToDo({ navigation }) {
       />
       <View style={styles.buttonContainer}>
         <CustomButton label="Back" onPress={() => navigation.goBack()} />
-        <CustomButton label="Save" onPress={handlSave} />
+        <CustomButton label="Save" onPress={handleSave} />
       </View>
     </SafeAreaView>
   );

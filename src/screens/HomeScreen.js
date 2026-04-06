@@ -1,37 +1,59 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, FlatList } from "react-native";
 import CustomButton from "../components/CustomButton";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Title from "../components/Title";
 import { useState, useEffect } from "react";
-import { FlatList } from "react-native";
-import { TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function HomeScreen({ navigation, route }) {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
+    const loadTodos = async () => {
+      try {
+        const storedTodos = await AsyncStorage.getItem("todos");
+        if (storedTodos) setTodos(JSON.parse(storedTodos));
+      } catch (error) {
+        console.log("Error loading todos", error);
+      }
+    };
+    loadTodos();
+  }, []);
+
+  useEffect(() => {
+    const saveTodos = async () => {
+      try {
+        await AsyncStorage.setItem("todos", JSON.stringify(todos));
+      } catch (error) {
+        console.log("Error saving todos", error);
+      }
+    };
+    saveTodos();
+  }, [todos]);
+
+  useEffect(() => {
     if (route.params?.newTodo) {
-      setTodos((prevTodos) => [...prevTodos, route.params.newTodo]);
-      navigation.setParams({ newTodo: undefined });
+      setTodos((prev) => [...prev, route.params.newTodo]);
+      navigation.setParams({ newTodo: undefined }); 
     }
   }, [route.params?.newTodo]);
 
   const toggleExpand = (id) => {
     const updated = todos.map((todo) =>
-      todo.id === id ? { ...todo, expanded: !todo.expanded } : todo,
+      todo.id === id ? { ...todo, expanded: !todo.expanded } : todo
     );
     setTodos(updated);
   };
 
   const markFinished = (id) => {
     const updated = todos.map((todo) =>
-      todo.id === id ? { ...todo, finished: true } : todo,
+      todo.id === id ? { ...todo, finished: true } : todo
     );
     setTodos(updated);
   };
 
-  const deleteToDo = (id) => {
+  const deleteTodo = (id) => {
     const updated = todos.filter((todo) => todo.id !== id);
     setTodos(updated);
   };
@@ -75,7 +97,7 @@ export default function HomeScreen({ navigation, route }) {
                       name="trash"
                       size={28}
                       color="red"
-                      onPress={() => deleteToDo(item.id)}
+                      onPress={() => deleteTodo(item.id)}
                     />
                   </View>
                 </>
@@ -89,7 +111,7 @@ export default function HomeScreen({ navigation, route }) {
         <View style={styles.footerUnderline} />
         <CustomButton
           label="Add New ToDo"
-          onPress={() => navigation.navigate("NewToDo")}
+          onPress={() => navigation.navigate("NewToDo", { addTodo: (todo) => setTodos((prev) => [...prev, todo]) })}
         />
       </View>
     </SafeAreaView>
