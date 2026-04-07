@@ -2,16 +2,13 @@ import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-const CustomButton = ({ label, onPress }) => {
+const CustomButton = ({ label, onPress, icon }) => {
   return (
     <TouchableOpacity style={styles.button} onPress={onPress}>
       <View style={styles.content}>
-        <Ionicons
-          name="add-circle"
-          size={20}
-          color="white"
-          style={styles.icon}
-        />
+        {icon && (
+          <Ionicons name={icon} size={20} style={styles.icon} />
+        )}
         <Text style={styles.buttonText}>{label}</Text>
       </View>
     </TouchableOpacity>

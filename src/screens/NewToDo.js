@@ -1,8 +1,8 @@
 import { View, Text, TextInput, StyleSheet, Alert } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import CustomButton from "../components/CustomButton";
-import Title from "../components/Title";
 import { useState } from "react";
+import Header from "../components/Header";
 
 export default function NewToDo({ navigation, route }) {
   const [title, setTitle] = useState("");
@@ -31,10 +31,7 @@ export default function NewToDo({ navigation, route }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <Title title="My ToDo List" />
-        <View style={styles.underline} />
-      </View>
+      <Header title="My ToDo List" />
       <TextInput
         placeholder="Title"
         style={styles.input}
@@ -50,8 +47,15 @@ export default function NewToDo({ navigation, route }) {
         onChangeText={setDescription}
       />
       <View style={styles.buttonContainer}>
-        <CustomButton label="Back" onPress={() => navigation.goBack()} />
-        <CustomButton label="Save" onPress={handleSave} />
+        <CustomButton
+          label="Back"
+          icon="arrow-back"
+          onPress={() => navigation.goBack()}
+        />
+        <CustomButton 
+        label="Save" 
+        icon="save" 
+        onPress={handleSave} />
       </View>
     </SafeAreaView>
   );
